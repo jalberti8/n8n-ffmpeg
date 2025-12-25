@@ -18,7 +18,7 @@ services:
       - DB_POSTGRESDB_SCHEMA=public
       - DB_POSTGRESDB_PASSWORD=$SERVICE_PASSWORD_POSTGRES
     volumes:
-      - 'n8n-data:/home/node/.n8n'
+      - n8n-data:/home/node/.n8n
     depends_on:
       postgresql:
         condition: service_healthy
@@ -32,7 +32,7 @@ services:
   postgresql:
     image: 'postgres:16-alpine'
     volumes:
-      - 'postgresql-data:/var/lib/postgresql/data'
+      - postgresql-data:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=$SERVICE_USER_POSTGRES
       - POSTGRES_PASSWORD=$SERVICE_PASSWORD_POSTGRES
@@ -46,4 +46,8 @@ services:
       retries: 10
 volumes:
   n8n-data:
+    external: true
+    name: b0gokkw8k4k8swsgcgww4wcw_n8n-data
   postgresql-data:
+    external: true
+    name: b0gokkw8k4k8swsgcgww4wcw_postgresql-data
